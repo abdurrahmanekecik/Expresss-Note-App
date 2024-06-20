@@ -7,7 +7,7 @@ const Sequelize = require("sequelize");
  * Create a Sequelize instance. This can be done by passing
  * the connection parameters separately to the Sequelize constructor.
  */
-const sequelize = new Sequelize("expressnote", "root", "123456", {
+const sequelize = new Sequelize("expressnote", "postgres", "123456", {
     host: "127.0.0.1",
     dialect: "postgres",
 });
