@@ -19,8 +19,8 @@ const Note = sequelize.define(
         },
 
         status: {
-            type: DataTypes.ENUM('active', 'inactive'),
-            defaultValue: 'active',
+            type: DataTypes.INTEGER,
+            defaultValue: 1,
         },
 
         created_at: {
