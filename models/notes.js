@@ -1,5 +1,4 @@
-const { sequelize } = require("../config/database");
-
+const { sequelize, DataTypes, Sequelize } = require('../config/database');
 
 const Note = sequelize.define(
     'Note',
@@ -13,28 +12,17 @@ const Note = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         content: {
             type: DataTypes.STRING,
         },
-
         status: {
             type: DataTypes.INTEGER,
             defaultValue: 1,
         },
-
-        created_at: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW,
-        },
-
     },
     {
         indexes: [{ unique: true, fields: ["id"] }],
     }
-
 );
-module.exports = {
-    Note,
-    sequelize,
-};
+
+module.exports = Note; // Export Note directly

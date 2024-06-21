@@ -1,37 +1,39 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const bodyParser = require("body-parser");
+const { sequelize } = require("./config/database"); // Assuming the database connection is in config/database.js
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+// Middleware to parse request body
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Import and use routes
+const routes = require("./routes/index");
+app.use(routes);
+
+// Test database connection
+sequelize.authenticate()
+    .then(() => {
+        console.log('Database connected...');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
+sequelize.sync({ force: false })
+    .then(() => {
+        console.log('Database synchronized');
+    })
+    .catch(err => {
+        console.error('Unable to synchronize the database:', err);
+    });
+
+
+
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-
-
-const db = require("./config/database");
-
-// Create an anonymous function to establish the database connection.
-// After the connection is established, start the server.
-
-const initApp = async () => {
-    console.log("Testing the database connection..");
-
-    // Test the connection.
-    try {
-        await db.authenticate();
-        console.log("Connection has been established successfully.");
-        /**
-         * Start the web server on the specified port.
-         */
-
-
-    } catch (error) {
-        console.error("Unable to connect to the database:", error.original);
-    }
-};
-
-initApp();
-

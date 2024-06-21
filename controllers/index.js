@@ -1,14 +1,13 @@
-const NoteModel = require("../models/notes");
+const Note = require("../models/notes");
 
 const createNote = (req, res) => {
-
+    console.log(req.body);
     const { title, content, status, } = req.body;
-    NoteModel.create({
+
+    Note.create({
         title: title,
         content: content,
         status: status,
-        created_at: new Date(),
-
     })
         .then((result) => {
             return res.json({
@@ -28,7 +27,7 @@ const createNote = (req, res) => {
 
 const getNote = (req, res) => {
     const id = req.query.id;
-    NoteModel.findByPK(id)
+    Note.findByPK(id)
         .then((result) => {
             return res.json(result);
         })
@@ -43,8 +42,8 @@ const getNote = (req, res) => {
 
 
 const getAllNotes = (req, res) => {
-    NoteModel.findAll({
-        attributes: ["id","title", "content", "status", "created_at"],
+    Note.findAll({
+        attributes: ["id", "title", "content", "status", "created_at"],
     })
         .then((result) => {
             return res.json(result);
@@ -56,21 +55,13 @@ const getAllNotes = (req, res) => {
             });
         });
 };
-
 const editNote = (req, res) => {
-    NoteModel.update(
+    Note.update(
         {
             title: req.body.title,
-        },
-        {
             content: req.body.content,
-        },
-
-        {
             status: req.body.status,
         },
-
-
         {
             where: {
                 id: req.body.id,
@@ -78,11 +69,15 @@ const editNote = (req, res) => {
         }
     )
         .then((result) => {
-            return res.json(result);
+            if (result[0] === 1) {
+                return res.json({ message: "Record updated successfully" });
+            } else {
+                return res.json({ message: "Record not found or no changes made" });
+            }
         })
         .catch((error) => {
             console.log(error);
-            return res.json({
+            return res.status(500).json({
                 message: "Unable to update the record!",
             });
         });
@@ -90,9 +85,10 @@ const editNote = (req, res) => {
 
 
 const deleteNote = (req, res) => {
-    NoteModel.destroy({
+
+    Note.destroy({
         where: {
-            id: req.query.id,
+            id: req.body.id,
         },
     })
         .then((result) => {

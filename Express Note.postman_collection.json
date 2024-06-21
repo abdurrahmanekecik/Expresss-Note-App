@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "369186be-72b9-4e5b-9e62-14a9fb26f9ae",
+		"name": "Express Note",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13695075"
+	},
+	"item": [
+		{
+			"name": "Get All Note",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Lorem",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "console.log(req.body);console.log(req.body);console.log(req.body);console.log(req.body);",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Lorem212",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Content Lorem121",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "1121",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "5bc8497b-21f6-44e0-8e95-a68a5a9f9a88",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/notes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5bc8497b-21f6-44e0-8e95-a68a5a9f9a88",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/notes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notes",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
