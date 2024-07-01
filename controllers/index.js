@@ -23,13 +23,19 @@ const createNote = (req, res) => {
 }
 
 
-
-
 const getNote = (req, res) => {
-    const id = req.query.id;
-    Note.findByPK(id)
+    const id = req.params.id;
+    console.log("Received ID:", id);
+
+    Note.findByPk(id)
         .then((result) => {
-            return res.json(result);
+            if (result) {
+                return res.json(result);
+            } else {
+                return res.json({
+                    message: 'Note not found!'
+                });
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -38,7 +44,6 @@ const getNote = (req, res) => {
             });
         });
 };
-
 
 
 const getAllNotes = (req, res) => {
@@ -85,6 +90,7 @@ const editNote = (req, res) => {
 
 
 const deleteNote = (req, res) => {
+    console.log(req.body);
 
     Note.destroy({
         where: {

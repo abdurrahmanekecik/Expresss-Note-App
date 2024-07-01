@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const { sequelize } = require("./config/database"); // Assuming the database connection is in config/database.js
+const cors = require('cors');
 
+app.use(cors());
 // Middleware to parse request body
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
