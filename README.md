@@ -5,8 +5,7 @@ Bu proje, Express.js ve Sequelize kullanılarak geliştirilmiş basit bir not uy
 Başlangıç
 Projeyi yerel makinanıza klonlayarak başlayabilirsiniz.
 
-git clone https://github.com/kullanici/abdurrahmanekecik
-
+git clone https://github.com/abdurrahmanekecik/Expresss-Note-App.git 
 cd Expresss-Note-App
 
 Kurulum
@@ -15,3 +14,5 @@ Proje bağımlılıklarını yüklemek için aşağıdaki komutu çalıştırın
 
 npm install
 nodemon app.js
+
+Frontend: https://github.com/abdurrahmanekecik/Vue-Note-App
